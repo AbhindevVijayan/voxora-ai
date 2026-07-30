@@ -3,7 +3,7 @@ function GenerateButton({ loading, onClick }) {
         <button
             onClick={onClick}
             disabled={loading}
-            className="generate-btn"
+            className="w-full rounded-lg bg-blue-600 py-3 text-white font-semibold transition hover:bg-blue-700 disabled:bg-slate-400"
         >
             {loading ? "Generating..." : "Generate Voice"}
         </button>
