@@ -78,14 +78,14 @@ function Home() {
     return (
         <div>
 
-            <div className="min-h-screen bg-slate-100 py-10">
-                <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+            <div className="min-h-screen bg-slate-100 dark:bg-slate-950 py-10">
+                <div className="max-w-3xl mx-auto rounded-xl bg-white p-8 shadow-lg dark:bg-slate-900">
 
-                    <h2 className="text-3xl font-bold text-slate-800">
+                    <h2 className="text-3xl font-bold text-slate-800 dark:text-white">
                         Generate AI Voice
                     </h2>
 
-                    <p className="text-slate-500 mt-2 mb-8">
+                    <p className="text-slate-500 mt-2 mb-8 dark:text-white">
                         Convert text into natural sounding speech using ElevenLabs.
                     </p>
 
@@ -100,7 +100,7 @@ function Home() {
                         onChange={setSelectedVoice}
                     />
                     {currentVoice && (
-                        <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
+                        <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-sm ">
 
                             <h3 className="text-lg font-semibold text-slate-800">
                                 {currentVoice.name}
@@ -120,11 +120,11 @@ function Home() {
                             />
                         </div>
                     )}
-                    <div className="mt-6 rounded-xl border border-slate-200 bg-white">
+                    <div className="mt-6 rounded-xl border border-slate-200 bg-white dark:bg-slate-950 ">
 
                         <button
                             onClick={() => setShowAdvanced(!showAdvanced)}
-                            className="flex w-full items-center justify-between p-4 text-left font-semibold text-slate-700"
+                            className="flex w-full items-center justify-between p-4 text-left font-semibold text-slate-700 dark:text-white"
                         >
                             <span>⚙️ Advanced Settings</span>
                             <ChevronDown
@@ -136,29 +136,29 @@ function Home() {
                         {showAdvanced && (
                             <div className="border-t border-slate-200 p-4">
 
-                                {/* We'll add the sliders here */
-                                    <div className="mb-6">
-                                        <div className="flex justify-between">
-                                            <label className="font-medium text-slate-700">
-                                                Stability
-                                            </label>
+                                {/* We'll add the sliders here */}
+                                <div className="mb-6">
+                                    <div className="flex justify-between">
+                                        <label className="font-medium text-slate-700">
+                                            Stability
+                                        </label>
 
-                                            <span className="text-slate-500">
-                                                {stability.toFixed(2)}
-                                            </span>
-                                        </div>
-
-                                        <input
-                                            type="range"
-                                            min="0"
-                                            max="1"
-                                            step="0.01"
-                                            value={stability}
-                                            onChange={(e) => setStability(Number(e.target.value))}
-                                            className="mt-2 w-full accent-blue-600"
-                                        />
+                                        <span className="text-slate-500">
+                                            {stability.toFixed(2)}
+                                        </span>
                                     </div>
-                                }
+
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="1"
+                                        step="0.01"
+                                        value={stability}
+                                        onChange={(e) => setStability(Number(e.target.value))}
+                                        className="mt-2 w-full accent-blue-600"
+                                    />
+                                </div>
+
                                 <div>
                                     <div className="flex justify-between">
                                         <label className="font-medium text-slate-700">

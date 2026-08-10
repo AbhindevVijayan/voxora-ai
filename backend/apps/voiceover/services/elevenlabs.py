@@ -63,27 +63,33 @@ class ElevenLabsService:
         stability,
         similarity_boost,
     ):
-        try:
-            url = f"{self.BASE_URL}/text-to-speech/{voice_id}"
+     try:
+        url = f"{self.BASE_URL}/text-to-speech/{voice_id}"
 
-            payload = {
-                "text": text,
-                "model_id": model_id,
-                "voice_settings": {
-                    "stability": stability,
-                    "similarity_boost": similarity_boost,
-                },
-            }
+        payload = {
+            "text": text,
+            "model_id": model_id,
+            "voice_settings": {
+                "stability": stability,
+                "similarity_boost": similarity_boost,
+            },
+        }
 
-            response = requests.post(
-                url,
-                headers=self.headers,
-                json=payload,
-                timeout=60,
-            )
+        response = requests.post(
+            url,
+            headers=self.headers,
+            json=payload,
+            timeout=60,
+        )
 
-            response.raise_for_status()
-            return response.content
+        if not response.ok:
+            print("=" * 80)
+            print("Status:", response.status_code)
+            print("Response:", response.text)
+            print("=" * 80)
 
-        except RequestException as e:
-            raise Exception(f"Failed to generate speech: {str(e)}")
+        response.raise_for_status()
+        return response.content
+
+     except RequestException as e:
+        raise Exception(f"Failed to generate speech: {str(e)}")

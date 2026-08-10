@@ -1,26 +1,23 @@
+# Virtual Environment
+venv/
+
 # Python
 __pycache__/
 *.py[cod]
 *.pyo
-*.pyd
 
-# Virtual Environment
-venv/
+# Environment
 .env
 
-# Django
+# Database
 db.sqlite3
+
+# Media
 media/
 
 # VS Code
 .vscode/
 
-# Node
-node_modules/
-
-# Build files
-dist/
-build/
-
-# macOS
+# OS
 .DS_Store
+Thumbs.db

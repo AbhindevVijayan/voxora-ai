@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
-const [showModal, setShowModal] = useState(false);
-const [selectedId, setSelectedId] = useState(null);
 
 function History() {
     const [history, setHistory] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
 
     async function fetchHistory() {
         try {
