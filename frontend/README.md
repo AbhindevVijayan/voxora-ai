@@ -1,16 +1,38 @@
-# React + Vite
+# High-Fidelity Voiceover Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend for the High-Fidelity Voiceover Generator project.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This is the frontend application for generating voiceovers with high fidelity. It includes the user interface, audio preview, and integration with backend services.
 
-## React Compiler
+## Requirements
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 18+
+- npm
 
-## Expanding the ESLint configuration
+## Install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+npm install
+
+## Run Locally
+
+npm run dev
+
+## Build
+
+npm run build
+
+## Preview Production Build
+
+npm run preview
+
+## Project Structure
+
+- `public/` - static assets
+- `src/` - application source code
+- `README.md` - project documentation
+
+## Notes
+
+Update this README with backend integration details, deployment instructions, and any additional scripts as the project evolves.
