@@ -1,0 +1,67 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: voiceover-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: voiceover_generator
+      MYSQL_USER: voiceover
+      MYSQL_PASSWORD: voiceover
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -pmysql --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: voiceover-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - backend/.env
+    environment:
+      DEBUG: "True"
+      SECRET_KEY: dev-secret-key-for-docker
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: voiceover_generator
+      DB_USER: root
+      DB_PASSWORD: mysql
+      ALLOWED_HOSTS: localhost,127.0.0.1,0.0.0.0,backend,frontend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./backend/media:/app/backend/media
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: voiceover-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app/frontend
+      - /app/frontend/node_modules
+    environment:
+      VITE_API_URL: http://localhost:8000/api
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+
+volumes:
+  mysql_data:
